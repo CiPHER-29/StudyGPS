@@ -1,2 +1,2 @@
-# StudyGPS
+# Final-App
 Science Project
