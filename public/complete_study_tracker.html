@@ -790,11 +790,36 @@
                 });
 
                 const colorOptions = [
-                    { value: '#C20114', name: 'Red' },
-                    { value: '#7B8085', name: 'Gray' },
-                    { value: '#C7D0D6', name: 'Light Gray' },
-                    { value: '#ECEFF2', name: 'Very Light Gray' },
-                    { value: '#0C120C', name: 'Dark Green' }
+                    { value: '#FF6B6B', name: 'Red' },
+                    { value: '#FF8E53', name: 'Orange' },
+                    { value: '#FF6B9D', name: 'Pink' },
+                    { value: '#C44569', name: 'Dark Pink' },
+                    { value: '#F8B500', name: 'Yellow' },
+                    { value: '#FFA726', name: 'Amber' },
+                    { value: '#66BB6A', name: 'Green' },
+                    { value: '#26A69A', name: 'Teal' },
+                    { value: '#42A5F5', name: 'Blue' },
+                    { value: '#5C6BC0', name: 'Indigo' },
+                    { value: '#AB47BC', name: 'Purple' },
+                    { value: '#7E57C2', name: 'Deep Purple' },
+                    { value: '#EC407A', name: 'Hot Pink' },
+                    { value: '#8BC34A', name: 'Light Green' },
+                    { value: '#00ACC1', name: 'Cyan' },
+                    { value: '#29B6F6', name: 'Light Blue' },
+                    { value: '#9C27B0', name: 'Violet' },
+                    { value: '#673AB7', name: 'Dark Violet' },
+                    { value: '#E91E63', name: 'Magenta' },
+                    { value: '#4CAF50', name: 'Forest Green' },
+                    { value: '#009688', name: 'Dark Teal' },
+                    { value: '#03A9F4', name: 'Sky Blue' },
+                    { value: '#3F51B5', name: 'Navy Blue' },
+                    { value: '#9E9E9E', name: 'Gray' },
+                    { value: '#607D8B', name: 'Blue Gray' },
+                    { value: '#795548', name: 'Brown' },
+                    { value: '#FF5722', name: 'Deep Orange' },
+                    { value: '#CDDC39', name: 'Lime' },
+                    { value: '#FFC107', name: 'Gold' },
+                    { value: '#FF9800', name: 'Orange Gold' }
                 ];
 
                 const handleSubmit = () => {
@@ -830,12 +855,12 @@
                                             </option>
                                         ))}
                                     </select>
-                                    <div className="mt-2 flex gap-2">
+                                    <div className="mt-2 grid grid-cols-10 gap-2 max-h-32 overflow-y-auto">
                                         {colorOptions.map(option => (
                                             <div
                                                 key={option.value}
-                                                className={`w-6 h-6 rounded border-2 cursor-pointer ${
-                                                    formData.color === option.value ? 'border-red-500' : 'border-gray-300'
+                                                className={`w-8 h-8 rounded-lg border-2 cursor-pointer transition-all hover:scale-110 ${
+                                                    formData.color === option.value ? 'border-white ring-2 ring-blue-500' : 'border-gray-400'
                                                 }`}
                                                 style={{ backgroundColor: option.value }}
                                                 onClick={() => setFormData({...formData, color: option.value})}
