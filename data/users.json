@@ -1,0 +1,78 @@
+{
+  "users": {
+    "ahmadrafi5660@gmail.com": {
+      "id": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "password": "$2b$12$VzJdNePCr.DB0oJihRdPyePbrvjF8N6XeGG8rzFj1PZmS0/BITnbK",
+      "createdAt": "2025-09-19T09:43:53.275Z"
+    },
+    "test@example.com": {
+      "id": "f903036e-70d9-4fcd-a39f-24d9dc289001",
+      "email": "test@example.com",
+      "password": "$2b$12$j1C2m6nc1Gwe.Rf8P4lfaOzQcyKvl8bo5MsoSwxJltbu4pV.Fk2qO",
+      "createdAt": "2025-09-19T11:11:27.007Z"
+    }
+  },
+  "sessions": {
+    "dce272a9-165e-4d39-b7f2-0e7e72d1c293": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T09:43:59.982Z"
+    },
+    "7631ea36-0583-43f5-abfd-9b270f473b4f": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T10:54:19.015Z"
+    },
+    "3c4fa9df-e232-48d8-96ac-71668bd1b2cb": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T11:11:09.556Z"
+    },
+    "c3171d38-5bed-4480-81e7-c9e8db3ede67": {
+      "userId": "f903036e-70d9-4fcd-a39f-24d9dc289001",
+      "email": "test@example.com",
+      "createdAt": "2025-09-19T11:11:27.517Z"
+    },
+    "b5cd62b6-bbb3-4fd7-af68-8a37cf378a4e": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T11:40:36.558Z"
+    },
+    "74c22d0f-146e-4bbf-a449-b8abc273a87a": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T11:54:51.199Z"
+    },
+    "29a0734d-383f-4ea9-8adc-cf66bacbf237": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T12:14:13.831Z"
+    },
+    "98286ef3-b150-4982-b81a-01651ccad03b": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T13:52:52.391Z"
+    },
+    "6aac8a3f-f53e-40f6-8557-80e1f802f417": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T14:52:11.607Z"
+    },
+    "22aa13f5-9ae1-41ac-8f6c-80abc47955cb": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T15:42:47.468Z"
+    },
+    "a14116c1-a406-4113-9f76-0155147fb040": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T16:33:00.050Z"
+    },
+    "f1dc68da-b979-4aa1-a55e-9b1535e3e616": {
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "email": "ahmadrafi5660@gmail.com",
+      "createdAt": "2025-09-19T17:02:51.204Z"
+    }
+  }
+}
