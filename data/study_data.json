@@ -28,7 +28,16 @@
       "createdAt": "2025-09-19T19:29:52.567Z"
     }
   },
-  "study_sessions": {},
+  "study_sessions": {
+    "c7327a6e-e115-4af8-8dfc-2f5a049db281": {
+      "id": "c7327a6e-e115-4af8-8dfc-2f5a049db281",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "subjectId": "1a62fde7-6a42-414d-ba9f-028a99078ec0",
+      "duration": 7,
+      "date": "2025-09-19",
+      "timestamp": "2025-09-19T19:32:56.615Z"
+    }
+  },
   "video_notes": {
     "eef39578-3993-41f9-8cdf-a6d2270f06ed": {
       "id": "eef39578-3993-41f9-8cdf-a6d2270f06ed",

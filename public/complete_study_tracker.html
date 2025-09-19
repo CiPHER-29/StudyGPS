@@ -476,6 +476,7 @@
             const [studySessions, setStudySessions] = useState([]);
             const [activeTimer, setActiveTimer] = useState(null);
             const [timerSeconds, setTimerSeconds] = useState(0);
+            const [pausedTimerSubject, setPausedTimerSubject] = useState(null);
             const [currentView, setCurrentView] = useState('dashboard');
             const [showAddSubject, setShowAddSubject] = useState(false);
             const [showAddSession, setShowAddSession] = useState(false);
@@ -638,12 +639,23 @@
 
             const startTimer = (subjectId) => {
                 if (!subjectId) return; // Ensure a subjectId is provided
-                setActiveTimer(subjectId);
-                // If timer was paused, it keeps its value. If it was stopped, timerSeconds should be 0.
-                // This is handled by the stopTimer function resetting timerSeconds.
+                
+                if (activeTimer === subjectId) {
+                    // Timer is already running for this subject, do nothing
+                    return;
+                } else if (activeTimer === null && pausedTimerSubject === subjectId && timerSeconds > 0) {
+                    // Resume paused timer for the SAME subject
+                    setActiveTimer(subjectId);
+                } else {
+                    // Start fresh timer (different subject or no previous timer)
+                    setActiveTimer(subjectId);
+                    setTimerSeconds(0);
+                    setPausedTimerSubject(null);
+                }
             };
 
             const pauseTimer = () => {
+                setPausedTimerSubject(activeTimer); // Remember which subject was paused
                 setActiveTimer(null);
             };
 
@@ -676,6 +688,7 @@
                 }
                 setActiveTimer(null);
                 setTimerSeconds(0); // Reset timer seconds after stopping
+                setPausedTimerSubject(null); // Clear any paused subject state
             };
 
             const addSession = async (sessionData) => {
