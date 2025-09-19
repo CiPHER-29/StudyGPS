@@ -26,6 +26,15 @@
       "goal": 60,
       "description": "",
       "createdAt": "2025-09-19T19:29:52.567Z"
+    },
+    "e6cfdafb-5892-4554-8158-228cd1edf197": {
+      "id": "e6cfdafb-5892-4554-8158-228cd1edf197",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "name": "Biology",
+      "color": "#32CD32",
+      "goal": 60,
+      "description": "Porte valo lagena",
+      "createdAt": "2025-09-19T19:53:03.512Z"
     }
   },
   "study_sessions": {
@@ -36,6 +45,14 @@
       "duration": 7,
       "date": "2025-09-19",
       "timestamp": "2025-09-19T19:32:56.615Z"
+    },
+    "b05d4934-b8a0-4f81-aa38-29fa622e722d": {
+      "id": "b05d4934-b8a0-4f81-aa38-29fa622e722d",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "subjectId": null,
+      "duration": 19,
+      "date": "2025-09-19",
+      "timestamp": "2025-09-19T19:53:29.306Z"
     }
   },
   "video_notes": {
