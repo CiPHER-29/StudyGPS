@@ -8,6 +8,24 @@
       "goal": "60",
       "description": "Advanced calculus and algebra",
       "createdAt": "2025-09-19T11:11:32.923Z"
+    },
+    "3eae9277-a20d-4191-9027-4811f58c3596": {
+      "id": "3eae9277-a20d-4191-9027-4811f58c3596",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "name": "English",
+      "color": "#00FF00",
+      "goal": 60,
+      "description": "",
+      "createdAt": "2025-09-19T19:29:10.751Z"
+    },
+    "1a62fde7-6a42-414d-ba9f-028a99078ec0": {
+      "id": "1a62fde7-6a42-414d-ba9f-028a99078ec0",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "name": "Physics",
+      "color": "#C20114",
+      "goal": 60,
+      "description": "",
+      "createdAt": "2025-09-19T19:29:52.567Z"
     }
   },
   "study_sessions": {},
