@@ -9,7 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+        /* Custom font - replace 'YourCustomFont' with your font name and update the src path */
+        @font-face {
+            font-family: 'YourCustomFont';
+            src: url('./your-font-file.woff2') format('woff2'),
+                 url('./your-font-file.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
 
         :root {
             --primary-dark: #0F141A;
@@ -28,7 +38,7 @@
 
         body { 
             margin: 0; 
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
             background-color: var(--primary-dark);
             color: var(--light-gray);
         }
@@ -147,15 +157,15 @@
             color: var(--accent-blue) !important;
         }
 
-        .hover\\:bg-blue-700:hover {
+        .hover\:bg-blue-700:hover {
             background-color: rgba(0, 183, 255, 0.85) !important;
         }
 
-        .hover\\:bg-gray-100:hover {
+        .hover\:bg-gray-100:hover {
             background-color: rgba(175, 194, 205, 0.3) !important;
         }
 
-        .hover\\:bg-gray-300:hover {
+        .hover\:bg-gray-300:hover {
             background-color: rgba(175, 194, 205, 0.5) !important;
         }
 
@@ -171,16 +181,16 @@
             box-shadow: 0 1px 3px rgba(0, 183, 255, 0.1) !important;
         }
 
-        .focus\\:ring-blue-500:focus {
+        .focus\:ring-blue-500:focus {
             box-shadow: 0 0 0 2px rgba(0, 183, 255, 0.2) !important;
         }
 
-        .focus\\:border-blue-500:focus {
+        .focus\:border-blue-500:focus {
             border-color: var(--accent-blue) !important;
         }
 
         /* Additional color overrides for proper color scheme */
-        .hover\\:bg-yellow-200:hover {
+        .hover\:bg-yellow-200:hover {
             background-color: rgba(0, 183, 255, 0.3) !important;
         }
 
@@ -236,7 +246,7 @@
             border-color: var(--medium-gray) !important;
         }
 
-        .focus\\:ring-2:focus {
+        .focus\:ring-2:focus {
             box-shadow: 0 0 0 2px rgba(0, 183, 255, 0.2) !important;
         }
 
@@ -285,7 +295,7 @@
             background-color: var(--primary-dark) !important;
             border-color: var(--medium-gray) !important;
             color: var(--light-gray) !important;
-            font-family: 'Libertinus Serif', serif !important;
+            font-family: 'Instrument Serif', serif !important;
         }
 
         input:focus, textarea:focus, select:focus {
@@ -295,7 +305,7 @@
         }
 
         button {
-            font-family: 'Libertinus Serif', serif !important;
+            font-family: 'Instrument Serif', serif !important;
         }
 
         /* Modal backdrop */
@@ -850,10 +860,10 @@
 
             const resetSubjectProgress = async (subjectId) => {
                 if (!user) return;
-                
+
                 const subject = subjects.find(s => String(s.id) === String(subjectId));
                 const subjectName = subject ? subject.name : 'this subject';
-                
+
                 if (!confirm(`Are you sure you want to reset all progress for ${subjectName}? This will delete all study sessions and reset the timer. This action cannot be undone.`)) {
                     return;
                 }
@@ -864,10 +874,10 @@
 
                     // Get all sessions for this subject
                     const subjectSessions = studySessions.filter(session => String(session.subjectId) === String(subjectId));
-                    
+
                     // Get session token from localStorage (correct way)
                     const sessionToken = localStorage.getItem('sessionToken');
-                    
+
                     // Delete all sessions in parallel for better performance
                     const deletePromises = subjectSessions.map(session => 
                         fetch(`/api/sessions/${session.id}`, {
@@ -877,25 +887,25 @@
                             }
                         })
                     );
-                    
+
                     const deleteResults = await Promise.all(deletePromises);
-                    
+
                     // Check if all deletes were successful
                     const failedDeletes = deleteResults.filter(response => !response.ok);
-                    
+
                     if (failedDeletes.length > 0) {
                         console.error(`Failed to delete ${failedDeletes.length} session(s)`);
                         alert(`Warning: ${failedDeletes.length} session(s) could not be deleted from the server. Some data may reappear after refresh.`);
                     }
-                    
+
                     // Update local state by removing all sessions for this subject
                     setStudySessions(prev => prev.filter(session => String(session.subjectId) !== String(subjectId)));
-                    
+
                     // Only show success if all deletes succeeded
                     if (failedDeletes.length === 0) {
                         alert(`All progress for ${subjectName} has been reset successfully!`);
                     }
-                    
+
                 } catch (error) {
                     console.error('Error resetting subject progress:', error);
                     alert('There was an error resetting the subject progress. Please try again.');

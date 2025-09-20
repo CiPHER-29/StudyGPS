@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study GPS - Are You 1% Better Then Yesterday?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -19,21 +19,21 @@
             --light-gray: #E5EFF7;
             --white: #FCFCFC;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
             line-height: 1.6;
             color: var(--light-gray);
             background: var(--primary-dark);
             overflow-x: hidden;
         }
-        
+
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
@@ -41,7 +41,7 @@
             align-items: center;
             position: relative;
         }
-        
+
         .hero::before {
             content: '';
             position: absolute;
@@ -52,7 +52,7 @@
             background: radial-gradient(circle at 20% 20%, rgba(0, 183, 255, 0.2) 0%, transparent 50%),
                         radial-gradient(circle at 80% 80%, rgba(35, 41, 50, 0.3) 0%, transparent 50%);
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -60,26 +60,26 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .hero-content {
             text-align: center;
             animation: fadeInUp 1s ease-out;
         }
-        
+
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
             color: var(--white);
             margin-bottom: 1rem;
             letter-spacing: -0.01em;
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
         }
-        
+
         .hero .highlight {
             color: var(--accent-blue);
             font-weight: 700;
         }
-        
+
         .hero p {
             font-size: 1.3rem;
             color: var(--medium-gray);
@@ -89,9 +89,9 @@
             margin-right: auto;
             font-weight: 400;
             font-style: italic;
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
         }
-        
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -99,7 +99,7 @@
             flex-wrap: wrap;
             margin-bottom: 4rem;
         }
-        
+
         .btn {
             padding: 1rem 2.5rem;
             border: none;
@@ -111,58 +111,58 @@
             text-decoration: none;
             display: inline-block;
             min-width: 160px;
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        
+
         .btn-primary {
             background: var(--accent-blue);
             color: var(--white);
         }
-        
+
         .btn-primary:hover {
             background: var(--light-blue);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(0, 183, 255, 0.3);
         }
-        
+
         .btn-secondary {
             background: transparent;
             color: var(--light-gray);
             border: 2px solid var(--medium-gray);
         }
-        
+
         .btn-secondary:hover {
             background: var(--medium-gray);
             color: var(--white);
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(175, 194, 205, 0.3);
         }
-        
+
         .features {
             padding: 6rem 0;
             background: var(--secondary-dark);
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-top: 4rem;
         }
-        
+
         .feature {
             text-align: center;
             padding: 2rem;
             border-radius: 20px;
             transition: transform 0.3s ease;
         }
-        
+
         .feature:hover {
             transform: translateY(-5px);
         }
-        
+
         .feature-icon {
             width: 80px;
             height: 80px;
@@ -175,30 +175,30 @@
             color: var(--accent-blue);
             font-size: 2rem;
         }
-        
+
         .feature h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--white);
             font-weight: 700;
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
         }
-        
+
         .feature p {
             color: var(--medium-gray);
             font-size: 1.1rem;
             line-height: 1.8;
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2.8rem;
             font-weight: 700;
             color: var(--white);
             margin-bottom: 1rem;
-            font-family: 'Libertinus Serif', serif;
+            font-family: 'Instrument Serif', serif;
         }
-        
+
         .section-subtitle {
             text-align: center;
             font-size: 1.3rem;
@@ -206,7 +206,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .auth-modal {
             position: fixed;
             top: 0;
@@ -222,12 +222,12 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .auth-modal.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .auth-modal-content {
             background: var(--secondary-dark);
             border: 1px solid var(--tertiary-dark);
@@ -239,30 +239,30 @@
             transform: translateY(20px);
             transition: transform 0.3s ease;
         }
-        
+
         .auth-modal.active .auth-modal-content {
             transform: translateY(0);
         }
-        
+
         .auth-modal h2 {
             font-size: 2rem;
             font-weight: 400;
             color: var(--white);
             margin-bottom: 2rem;
         }
-        
+
         .form-group {
             margin-bottom: 1.5rem;
             text-align: left;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: var(--white);
             font-weight: 500;
         }
-        
+
         .form-group input {
             width: 100%;
             padding: 1rem;
@@ -273,22 +273,22 @@
             background: var(--primary-dark);
             color: var(--white);
         }
-        
+
         .form-group input:focus {
             outline: none;
             border-color: var(--accent-blue);
         }
-        
+
         .form-group input::placeholder {
             color: var(--medium-gray);
         }
-        
+
         .auth-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .close-modal {
             position: absolute;
             top: 1rem;
@@ -300,11 +300,11 @@
             cursor: pointer;
             transition: color 0.3s ease;
         }
-        
+
         .close-modal:hover {
             color: var(--accent-blue);
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -315,30 +315,30 @@
                 transform: translateY(0);
             }
         }
-        
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.2rem;
                 line-height: 1.2;
             }
-            
+
             .hero p {
                 font-size: 1.1rem;
             }
-            
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .container {
                 padding: 0 1rem;
             }
-            
+
             .btn {
                 font-size: 1rem;
                 padding: 0.9rem 2rem;
@@ -354,12 +354,12 @@
 
         // Simple authentication state
         let currentUser = null;
-        
+
         // Check for existing session on load
         const initAuth = () => {
             const sessionToken = localStorage.getItem('sessionToken');
             const userData = localStorage.getItem('userData');
-            
+
             if (sessionToken && userData) {
                 try {
                     currentUser = JSON.parse(userData);
@@ -371,7 +371,7 @@
                 }
             }
         };
-        
+
         // Initialize on load
         initAuth();
 
@@ -455,10 +455,10 @@
                                 userId: result.userId,
                                 email: result.email
                             }));
-                            
+
                             currentUser = { userId: result.userId, email: result.email };
                             setUser(currentUser);
-                            
+
                             // Redirect to app
                             window.location.href = '/app';
                         }
@@ -500,7 +500,7 @@
                         <div className="container">
                             <h2 className="section-title">Why Choose Study GPS?</h2>
                             <p className="section-subtitle">Experience the perfect blend of simplicity and powerful features designed to enhance your learning</p>
-                            
+
                             <div className="features-grid">
                                 <div className="feature">
                                     <div className="feature-icon">⏱️</div>
@@ -541,7 +541,7 @@
                         <div className="auth-modal-content">
                             <button className="close-modal" onClick={closeAuthModal}>×</button>
                             <h2>{authMode === 'signin' ? 'Welcome Back' : 'Create Account'}</h2>
-                            
+
                             <form onSubmit={handleAuthSubmit}>
                                 {message && (
                                     <div style={{padding: '1rem', marginBottom: '1rem', borderRadius: '10px', backgroundColor: message.includes('error') || message.includes('do not match') ? 'var(--accent-blue)' : 'var(--tertiary-dark)', color: 'var(--white)', textAlign: 'center'}}>
@@ -562,14 +562,14 @@
                                         <input type="password" name="confirmPassword" id="confirmPassword" required placeholder="••••••••" minLength="6" />
                                     </div>
                                 )}
-                                
+
                                 <div className="auth-buttons">
                                     <button type="submit" className="btn btn-primary" style={{flex: 1}} disabled={loading}>
                                         {loading ? 'Processing...' : (authMode === 'signin' ? 'Sign In' : 'Sign Up')}
                                     </button>
                                 </div>
                             </form>
-                            
+
                             <p style={{marginTop: '2rem', color: 'var(--light-gray)'}}>
                                 {authMode === 'signin' ? "Don't have an account? " : "Already have an account? "}
                                 <button 
