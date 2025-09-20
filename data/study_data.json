@@ -35,6 +35,15 @@
       "goal": 60,
       "description": "Porte valo lagena",
       "createdAt": "2025-09-19T19:53:03.512Z"
+    },
+    "0751d0b3-a959-43dd-9aa3-270041a7de9a": {
+      "id": "0751d0b3-a959-43dd-9aa3-270041a7de9a",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "name": "Physics",
+      "color": "#0080FF",
+      "goal": 60,
+      "description": "",
+      "createdAt": "2025-09-20T02:36:38.032Z"
     }
   },
   "study_sessions": {
