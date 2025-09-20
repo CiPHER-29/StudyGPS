@@ -711,7 +711,8 @@
                                 ...currentTimer,
                                 elapsed: currentTimer.elapsed + Math.floor((Date.now() - currentTimer.startedAt) / 1000),
                                 running: false,
-                                startedAt: null
+                                startedAt: null,
+                                lastSavedElapsed: currentTimer.lastSavedElapsed || 0
                             };
                         }
                     }
@@ -720,7 +721,8 @@
                     updated[subjectKey] = {
                         elapsed: updated[subjectKey]?.elapsed || 0,
                         running: true,
-                        startedAt: Date.now()
+                        startedAt: Date.now(),
+                        lastSavedElapsed: updated[subjectKey]?.lastSavedElapsed || 0
                     };
 
                     return updated;
@@ -742,7 +744,8 @@
                             ...timer,
                             elapsed: timer.elapsed + Math.floor((Date.now() - timer.startedAt) / 1000),
                             running: false,
-                            startedAt: null
+                            startedAt: null,
+                            lastSavedElapsed: timer.lastSavedElapsed || 0
                         };
                     }
 
@@ -764,8 +767,12 @@
                     ? timer.elapsed + Math.floor((Date.now() - timer.startedAt) / 1000)
                     : timer.elapsed;
 
-                // Save session if there's actual time logged
-                if (finalDuration > 0) {
+                // Calculate delta since last save
+                const lastSaved = timer.lastSavedElapsed || 0;
+                const deltaToSave = finalDuration - lastSaved;
+
+                // Save session if there's actual new time logged
+                if (deltaToSave > 0) {
                     try {
                         const response = await fetch('/api/sessions', {
                             method: 'POST',
@@ -775,7 +782,7 @@
                             body: JSON.stringify({
                                 userId: user.userId,
                                 subjectId: String(subjectKey),
-                                duration: finalDuration,
+                                duration: deltaToSave,
                                 date: new Date().toISOString().split('T')[0],
                                 timestamp: new Date().toISOString()
                             }),
@@ -792,16 +799,45 @@
                     }
                 }
 
-                // Reset only this subject's timer
+                // Keep timer with elapsed time, just stop it
+                setTimersBySubject(prev => {
+                    const updated = { ...prev };
+                    updated[subjectKey] = {
+                        elapsed: finalDuration,
+                        running: false,
+                        startedAt: null,
+                        lastSavedElapsed: finalDuration
+                    };
+                    return updated;
+                });
+
+                // Always clear the currently running subject ID when stopping this subject
+                if (currentlyRunningSubjectId === subjectKey) {
+                    setCurrentlyRunningSubjectId(null);
+                }
+
+            };
+
+            const resetTimer = (subjectId) => {
+                const subjectKey = String(subjectId);
+                if (!subjectKey) return;
+
+                // Stop the timer if it's currently running
+                if (currentlyRunningSubjectId === subjectKey) {
+                    setCurrentlyRunningSubjectId(null);
+                }
+
+                // Reset the timer to 0
                 setTimersBySubject(prev => {
                     const updated = { ...prev };
                     delete updated[subjectKey];
                     return updated;
                 });
 
-                if (currentlyRunningSubjectId === subjectKey) {
-                    setCurrentlyRunningSubjectId(null);
-                }
+                // Persist the change
+                const updatedTimers = { ...timersBySubject };
+                delete updatedTimers[subjectKey];
+                persistTimers(updatedTimers);
             };
 
             const addSession = async (sessionData) => {
@@ -1670,13 +1706,22 @@
                                                                                 </button>
                                                                             )}
                                                                             {timersBySubject[String(subject.id)] && (
-                                                                                <button
-                                                                                    onClick={() => stopTimer(subject.id)}
-                                                                                    className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs transition-colors ml-1"
-                                                                                    title="Stop Timer and Save Session"
-                                                                                >
-                                                                                    ⏹
-                                                                                </button>
+                                                                                <>
+                                                                                    <button
+                                                                                        onClick={() => stopTimer(subject.id)}
+                                                                                        className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded text-xs transition-colors ml-1"
+                                                                                        title="Stop Timer and Save Session"
+                                                                                    >
+                                                                                        ⏹
+                                                                                    </button>
+                                                                                    <button
+                                                                                        onClick={() => resetTimer(subject.id)}
+                                                                                        className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs transition-colors ml-1"
+                                                                                        title="Reset Timer to 0"
+                                                                                    >
+                                                                                        🔄
+                                                                                    </button>
+                                                                                </>
                                                                             )}
                                                                         </div>
                                                                     </div>
