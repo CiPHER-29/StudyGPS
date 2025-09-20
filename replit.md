@@ -39,9 +39,31 @@ Preferred communication style: Simple, everyday language.
 - **Session Management**: Token-based user sessions stored locally
 - **Password Security**: BCrypt password hashing for secure user authentication
 
+## Environment Setup
+
+### Replit Configuration
+- **Port**: Configured to run on port 5000 (frontend access)
+- **Host Binding**: Server binds to 0.0.0.0 for Replit proxy compatibility
+- **Workflow**: "Study Tracker Server" workflow runs `npm start`
+- **Deployment**: Configured for autoscale deployment target
+
+### Current Status
+- ✅ Dependencies installed via npm
+- ✅ Server running successfully on port 5000
+- ✅ Landing page and main application accessible
+- ✅ Authentication system functional
+- ✅ Database integration working (JSON file storage)
+- ✅ Deployment configuration set up
+
 ## External Dependencies
 
-### Core Libraries
+### Installed Node.js Packages
+- **bcryptjs**: v2.4.3 - Password hashing for user authentication
+- **dotenv**: v16.4.5 - Environment variable management  
+- **express**: v4.21.1 - Web server framework for API endpoints
+- **uuid**: v10.0.0 - Unique identifier generation
+
+### Core Libraries (CDN)
 - **React 18**: Frontend framework via CDN
 - **React DOM 18**: DOM rendering library
 - **Babel Standalone**: JavaScript transpilation for JSX support
@@ -53,11 +75,6 @@ Preferred communication style: Simple, everyday language.
 - **UUID**: Unique identifier generation for users and data records
 - **File System**: JSON-based data storage for user accounts and study data
 
-### Development Dependencies
-- **Express.js**: Web server framework
-- **dotenv**: Environment variable management
-- **Node.js**: Runtime environment for server execution
-
 ### CDN Resources
 - **Google Fonts**: Space Mono font family for consistent typography
 - **React/ReactDOM**: Frontend libraries served via cdnjs
@@ -65,6 +82,7 @@ Preferred communication style: Simple, everyday language.
 - **Tailwind CSS**: Styling framework served via CDN
 
 ### Hosting & Deployment
-- **Static File Serving**: Express.js serves public directory contents
-- **Port Configuration**: Flexible port assignment via environment variables
+- **Static File Serving**: Express.js serves public directory contents with no-cache headers
+- **Port Configuration**: Configured for port 5000 with 0.0.0.0 binding
 - **Cross-Origin Support**: Configured for development and production environments
+- **Autoscale Deployment**: Ready for production deployment on Replit
