@@ -8,15 +8,6 @@
       "goal": "60",
       "description": "Advanced calculus and algebra",
       "createdAt": "2025-09-19T11:11:32.923Z"
-    },
-    "6fe735b9-db75-4b05-babc-e1571ad6cebc": {
-      "id": "6fe735b9-db75-4b05-babc-e1571ad6cebc",
-      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
-      "name": "English",
-      "color": "#FFFFFF",
-      "goal": 60,
-      "description": "Writing Part",
-      "createdAt": "2025-09-20T03:15:18.875Z"
     }
   },
   "study_sessions": {
