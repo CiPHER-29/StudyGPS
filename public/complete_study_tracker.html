@@ -488,6 +488,21 @@
             </svg>
         );
 
+        // Utility function to convert YouTube URL to embed format
+        const getYouTubeEmbedUrl = (url) => {
+            if (!url) return null;
+            
+            // Extract video ID from various YouTube URL formats
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            
+            if (match && match[2].length === 11) {
+                return `https://www.youtube.com/embed/${match[2]}`;
+            }
+            
+            return null;
+        };
+
         const StudyTracker = () => {
             const [subjects, setSubjects] = useState([]);
             const [studySessions, setStudySessions] = useState([]);
@@ -1316,8 +1331,8 @@
 
                 const handleSubmit = async (e) => {
                     e.preventDefault();
-                    if (!formData.title || !formData.content) {
-                        alert('Please fill in both title and content');
+                    if (!formData.title || !formData.videoUrl) {
+                        alert('Please fill in both title and video URL');
                         return;
                     }
 
@@ -1392,23 +1407,24 @@
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium mb-1">Content</label>
-                                    <textarea
-                                        value={formData.content}
-                                        onChange={(e) => setFormData({...formData, content: e.target.value})}
-                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        rows="4"
-                                        placeholder="Enter your notes here..."
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">YouTube Video URL (optional)</label>
+                                    <label className="block text-sm font-medium mb-1">YouTube Video URL *</label>
                                     <input
                                         type="url"
                                         value={formData.videoUrl}
                                         onChange={(e) => setFormData({...formData, videoUrl: e.target.value})}
                                         className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         placeholder="https://www.youtube.com/watch?v=..."
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium mb-1">Content (optional)</label>
+                                    <textarea
+                                        value={formData.content}
+                                        onChange={(e) => setFormData({...formData, content: e.target.value})}
+                                        className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        rows="4"
+                                        placeholder="Enter your notes here..."
                                     />
                                 </div>
                                 <div>
@@ -2301,18 +2317,33 @@
                                                             <p className="text-gray-600 mb-4">{note.content}</p>
                                                             {note.videoUrl && (
                                                                 <div className="mb-4">
-                                                                    <div className="flex items-center gap-2 mb-2">
+                                                                    <div className="flex items-center gap-2 mb-3">
                                                                         <Play className="w-4 h-4 text-red-600" />
                                                                         <span className="text-sm font-medium text-gray-700">YouTube Video:</span>
                                                                     </div>
-                                                                    <a 
-                                                                        href={note.videoUrl} 
-                                                                        target="_blank" 
-                                                                        rel="noopener noreferrer"
-                                                                        className="text-blue-600 hover:text-blue-800 underline break-all"
-                                                                    >
-                                                                        {note.videoUrl}
-                                                                    </a>
+                                                                    {getYouTubeEmbedUrl(note.videoUrl) ? (
+                                                                        <div className="aspect-video w-full">
+                                                                            <iframe
+                                                                                width="100%"
+                                                                                height="100%"
+                                                                                src={getYouTubeEmbedUrl(note.videoUrl)}
+                                                                                title="YouTube video player"
+                                                                                frameBorder="0"
+                                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                                allowFullScreen
+                                                                                className="rounded-lg"
+                                                                            ></iframe>
+                                                                        </div>
+                                                                    ) : (
+                                                                        <a 
+                                                                            href={note.videoUrl} 
+                                                                            target="_blank" 
+                                                                            rel="noopener noreferrer"
+                                                                            className="text-blue-600 hover:text-blue-800 underline break-all"
+                                                                        >
+                                                                            {note.videoUrl}
+                                                                        </a>
+                                                                    )}
                                                                 </div>
                                                             )}
                                                             {note.subject && (
