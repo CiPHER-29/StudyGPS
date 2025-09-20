@@ -471,6 +471,13 @@
             </svg>
         );
 
+        const RotateCcw = () => (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="1,4 1,10 7,10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+            </svg>
+        );
+
         const StudyTracker = () => {
             const [subjects, setSubjects] = useState([]);
             const [studySessions, setStudySessions] = useState([]);
@@ -778,6 +785,7 @@
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
+                                'X-Session-Token': localStorage.getItem('sessionToken')
                             },
                             body: JSON.stringify({
                                 userId: user.userId,
@@ -838,6 +846,60 @@
                 const updatedTimers = { ...timersBySubject };
                 delete updatedTimers[subjectKey];
                 persistTimers(updatedTimers);
+            };
+
+            const resetSubjectProgress = async (subjectId) => {
+                if (!user) return;
+                
+                const subject = subjects.find(s => String(s.id) === String(subjectId));
+                const subjectName = subject ? subject.name : 'this subject';
+                
+                if (!confirm(`Are you sure you want to reset all progress for ${subjectName}? This will delete all study sessions and reset the timer. This action cannot be undone.`)) {
+                    return;
+                }
+
+                try {
+                    // First reset the timer automatically
+                    resetTimer(subjectId);
+
+                    // Get all sessions for this subject
+                    const subjectSessions = studySessions.filter(session => String(session.subjectId) === String(subjectId));
+                    
+                    // Get session token from localStorage (correct way)
+                    const sessionToken = localStorage.getItem('sessionToken');
+                    
+                    // Delete all sessions in parallel for better performance
+                    const deletePromises = subjectSessions.map(session => 
+                        fetch(`/api/sessions/${session.id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-Session-Token': sessionToken
+                            }
+                        })
+                    );
+                    
+                    const deleteResults = await Promise.all(deletePromises);
+                    
+                    // Check if all deletes were successful
+                    const failedDeletes = deleteResults.filter(response => !response.ok);
+                    
+                    if (failedDeletes.length > 0) {
+                        console.error(`Failed to delete ${failedDeletes.length} session(s)`);
+                        alert(`Warning: ${failedDeletes.length} session(s) could not be deleted from the server. Some data may reappear after refresh.`);
+                    }
+                    
+                    // Update local state by removing all sessions for this subject
+                    setStudySessions(prev => prev.filter(session => String(session.subjectId) !== String(subjectId)));
+                    
+                    // Only show success if all deletes succeeded
+                    if (failedDeletes.length === 0) {
+                        alert(`All progress for ${subjectName} has been reset successfully!`);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error resetting subject progress:', error);
+                    alert('There was an error resetting the subject progress. Please try again.');
+                }
             };
 
             const addSession = async (sessionData) => {
@@ -1489,7 +1551,29 @@
                                                 >
                                                     <Square className="w-4 h-4" />
                                                 </button>
+                                                <button
+                                                    onClick={() => resetTimer(currentlyRunningSubjectId)}
+                                                    className="p-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                                                    title="Reset Timer to 0"
+                                                >
+                                                    <RotateCcw className="w-4 h-4" />
+                                                </button>
                                             </>
+                                        )}
+                                        {/* Show reset buttons for paused timers when no timer is currently running */}
+                                        {!currentlyRunningSubjectId && Object.keys(timersBySubject).length > 0 && (
+                                            <div className="flex gap-2">
+                                                {Object.entries(timersBySubject).filter(([id, timer]) => timer.elapsed > 0).map(([subjectId, timer]) => (
+                                                    <button
+                                                        key={subjectId}
+                                                        onClick={() => resetTimer(subjectId)}
+                                                        className="p-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                                                        title={`Reset ${subjects.find(s => String(s.id) === subjectId)?.name || 'Unknown'} Timer to 0`}
+                                                    >
+                                                        <RotateCcw className="w-4 h-4" />
+                                                    </button>
+                                                ))}
+                                            </div>
                                         )}
                                     </div>
                                 </div>
@@ -1740,6 +1824,13 @@
                                                                     title="Edit Subject"
                                                                 >
                                                                     <Edit className="w-5 h-5" />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => resetSubjectProgress(subject.id)}
+                                                                    className="p-3 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors"
+                                                                    title="Reset All Progress (Timer + Sessions)"
+                                                                >
+                                                                    <RotateCcw className="w-5 h-5" />
                                                                 </button>
                                                                 <button
                                                                     onClick={() => deleteSubject(subject.id)}
