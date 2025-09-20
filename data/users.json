@@ -17,6 +17,20 @@
       "email": "newuser@test.com",
       "password": "$2b$12$q/MOrGkGPeSJzbxWS1tuUOykwNICBEfjg1q9qKT7T3URYV3W8r02C",
       "createdAt": "2025-09-20T05:42:45.725Z"
+    },
+    "testuser2@example.com": {
+      "id": "00fc77a0-95f9-4729-a3bc-f391ce8dd244",
+      "name": "John Doe",
+      "email": "testuser2@example.com",
+      "password": "$2b$12$IQNlaMxXpUHU3CoYi7K.Z.KzL1Kpw4FPgiwdUTSJEqPtIrQgv5ZD.",
+      "createdAt": "2025-09-20T06:02:41.940Z"
+    },
+    "testuser3@example.com": {
+      "id": "fa8f42ea-eb1c-49b7-8ddc-b6f32426ad65",
+      "name": "Jane Smith",
+      "email": "testuser3@example.com",
+      "password": "$2b$12$Yqpajau4oPW6ym/jet/8X..V/vj7GbkgVlsPYUSr0/wpiBlJIualO",
+      "createdAt": "2025-09-20T06:04:25.280Z"
     }
   },
   "sessions": {
@@ -149,6 +163,11 @@
       "userId": "89ca4541-a885-4fd8-92be-3230a52e5eb9",
       "email": "newuser@test.com",
       "createdAt": "2025-09-20T05:42:53.010Z"
+    },
+    "9e3660bd-a7ac-49a9-8eec-83ca350192cc": {
+      "userId": "00fc77a0-95f9-4729-a3bc-f391ce8dd244",
+      "email": "testuser2@example.com",
+      "createdAt": "2025-09-20T06:02:51.074Z"
     }
   }
 }

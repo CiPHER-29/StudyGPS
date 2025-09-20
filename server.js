@@ -55,10 +55,10 @@ app.use(express.static('public', {
 // User authentication endpoints
 app.post('/api/signup', async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, name } = req.body;
         
-        if (!email || !password) {
-            return res.status(400).json({ error: 'Email and password are required' });
+        if (!email || !password || !name) {
+            return res.status(400).json({ error: 'Email, password, and name are required' });
         }
         
         const users = readJSONFile('./data/users.json');
@@ -76,6 +76,7 @@ app.post('/api/signup', async (req, res) => {
         if (!users.users) users.users = {};
         users.users[email] = {
             id: userId,
+            name,
             email,
             password: hashedPassword,
             createdAt: new Date().toISOString()
@@ -83,7 +84,7 @@ app.post('/api/signup', async (req, res) => {
         
         writeJSONFile('./data/users.json', users);
         
-        res.json({ success: true, userId, email });
+        res.json({ success: true, userId, email, name });
     } catch (error) {
         console.error('Signup error:', error);
         res.status(500).json({ error: 'Internal server error' });
@@ -122,7 +123,7 @@ app.post('/api/signin', async (req, res) => {
         
         writeJSONFile('./data/users.json', users);
         
-        res.json({ success: true, sessionToken, userId: user.id, email: user.email });
+        res.json({ success: true, sessionToken, userId: user.id, email: user.email, name: user.name });
     } catch (error) {
         console.error('Signin error:', error);
         res.status(500).json({ error: 'Internal server error' });

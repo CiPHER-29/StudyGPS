@@ -412,6 +412,7 @@
                 const email = formData.get('email');
                 const password = formData.get('password');
                 const confirmPassword = formData.get('confirmPassword');
+                const name = formData.get('name');
 
                 try {
                     if (authMode === 'signup') {
@@ -426,7 +427,7 @@
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ email, password }),
+                            body: JSON.stringify({ email, password, name }),
                         });
 
                         const result = await response.json();
@@ -455,10 +456,11 @@
                             localStorage.setItem('sessionToken', result.sessionToken);
                             localStorage.setItem('userData', JSON.stringify({
                                 userId: result.userId,
-                                email: result.email
+                                email: result.email,
+                                name: result.name
                             }));
 
-                            currentUser = { userId: result.userId, email: result.email };
+                            currentUser = { userId: result.userId, email: result.email, name: result.name };
                             setUser(currentUser);
 
                             // Redirect to app
@@ -548,6 +550,12 @@
                                 {message && (
                                     <div style={{padding: '1rem', marginBottom: '1rem', borderRadius: '10px', backgroundColor: message.includes('error') || message.includes('do not match') ? 'var(--accent-blue)' : 'var(--tertiary-dark)', color: 'var(--white)', textAlign: 'center'}}>
                                         {message}
+                                    </div>
+                                )}
+                                {authMode === 'signup' && (
+                                    <div className="form-group">
+                                        <label htmlFor="name">Full Name</label>
+                                        <input type="text" name="name" id="name" required placeholder="Your full name" />
                                     </div>
                                 )}
                                 <div className="form-group">
