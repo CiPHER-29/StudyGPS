@@ -910,7 +910,7 @@
             };
 
             const getSubjectStats = (subjectId) => {
-                const sessions = studySessions.filter(s => s.subjectId === subjectId);
+                const sessions = studySessions.filter(s => String(s.subjectId) === String(subjectId));
                 const totalTime = sessions.reduce((sum, s) => sum + s.duration, 0);
                 const sessionsToday = sessions.filter(s => s.date === new Date().toISOString().split('T')[0]).length;
                 const totalSessions = sessions.length;
@@ -1612,7 +1612,7 @@
                                                 const stats = getSubjectStats(subject.id);
                                                 const goalProgress = (stats.totalTime / (subject.goal * 60)) * 100;
                                                 const todayStudied = studySessions.filter(s => 
-                                                    s.subjectId === subject.id && 
+                                                    String(s.subjectId) === String(subject.id) && 
                                                     s.date === new Date().toISOString().split('T')[0]
                                                 ).reduce((sum, s) => sum + s.duration, 0);
 
