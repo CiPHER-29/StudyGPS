@@ -17,9 +17,35 @@
       "goal": 60,
       "description": "Ideal Gas and Particle Dynamics",
       "createdAt": "2025-09-20T03:27:01.739Z"
+    },
+    "2a58f288-13a4-4ae3-a6eb-5038aab69dd0": {
+      "id": "2a58f288-13a4-4ae3-a6eb-5038aab69dd0",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "name": "English",
+      "color": "#C20114",
+      "goal": 60,
+      "description": "British",
+      "createdAt": "2025-09-20T03:30:16.619Z"
     }
   },
-  "study_sessions": {},
+  "study_sessions": {
+    "b1db288a-3ac3-4cb9-bace-c848b7136450": {
+      "id": "b1db288a-3ac3-4cb9-bace-c848b7136450",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "subjectId": "4ddbb4fc-85dd-4f01-81ab-3efa5300d2ee",
+      "duration": 120,
+      "date": "2025-09-20",
+      "timestamp": "2025-09-20T03:32:32.691Z"
+    },
+    "4b61bc6b-e9e2-428f-8251-074c8d32ad4d": {
+      "id": "4b61bc6b-e9e2-428f-8251-074c8d32ad4d",
+      "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
+      "subjectId": "4ddbb4fc-85dd-4f01-81ab-3efa5300d2ee",
+      "duration": 145,
+      "date": "2025-09-20",
+      "timestamp": "2025-09-20T03:33:33.399Z"
+    }
+  },
   "video_notes": {
     "eef39578-3993-41f9-8cdf-a6d2270f06ed": {
       "id": "eef39578-3993-41f9-8cdf-a6d2270f06ed",
