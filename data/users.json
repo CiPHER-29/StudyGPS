@@ -11,6 +11,12 @@
       "email": "test@example.com",
       "password": "$2b$12$j1C2m6nc1Gwe.Rf8P4lfaOzQcyKvl8bo5MsoSwxJltbu4pV.Fk2qO",
       "createdAt": "2025-09-19T11:11:27.007Z"
+    },
+    "newuser@test.com": {
+      "id": "89ca4541-a885-4fd8-92be-3230a52e5eb9",
+      "email": "newuser@test.com",
+      "password": "$2b$12$q/MOrGkGPeSJzbxWS1tuUOykwNICBEfjg1q9qKT7T3URYV3W8r02C",
+      "createdAt": "2025-09-20T05:42:45.725Z"
     }
   },
   "sessions": {
@@ -138,6 +144,11 @@
       "userId": "736666e3-97a0-48f0-8a12-6e8a2b4e110e",
       "email": "ahmadrafi5660@gmail.com",
       "createdAt": "2025-09-20T05:41:25.948Z"
+    },
+    "d0d4f873-e3b5-4eda-aadb-f353c71a5ae5": {
+      "userId": "89ca4541-a885-4fd8-92be-3230a52e5eb9",
+      "email": "newuser@test.com",
+      "createdAt": "2025-09-20T05:42:53.010Z"
     }
   }
 }
