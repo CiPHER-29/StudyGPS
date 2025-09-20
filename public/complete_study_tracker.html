@@ -521,13 +521,13 @@
 
             // Helper functions for per-subject timers
             const getTimerKey = (userId) => `study-timers-${userId}`;
-            
+
             const persistTimers = (timers) => {
                 if (user) {
                     localStorage.setItem(getTimerKey(user.userId), JSON.stringify(timers));
                 }
             };
-            
+
             const loadPersistedTimers = () => {
                 if (user) {
                     const saved = localStorage.getItem(getTimerKey(user.userId));
@@ -541,23 +541,23 @@
                 }
                 return {};
             };
-            
+
             const computeDisplayTime = (subjectId) => {
                 const timer = timersBySubject[subjectId];
                 if (!timer) return 0;
-                
+
                 if (timer.running && timer.startedAt) {
                     return timer.elapsed + Math.floor((Date.now() - timer.startedAt) / 1000);
                 }
                 return timer.elapsed;
             };
-            
+
             // Load persisted timers on user change
             useEffect(() => {
                 if (user) {
                     const persistedTimers = loadPersistedTimers();
                     setTimersBySubject(persistedTimers);
-                    
+
                     // Find currently running subject
                     const runningSubjectId = Object.keys(persistedTimers).find(id => persistedTimers[id].running);
                     if (runningSubjectId) {
@@ -565,7 +565,7 @@
                     }
                 }
             }, [user]);
-            
+
             // Global timer tick effect
             useEffect(() => {
                 let interval = null;
@@ -576,7 +576,7 @@
                 }
                 return () => clearInterval(interval);
             }, [currentlyRunningSubjectId]);
-            
+
             // Persist timers when they change
             useEffect(() => {
                 if (user && Object.keys(timersBySubject).length > 0) {
@@ -691,18 +691,18 @@
 
             const startTimer = (subjectId) => {
                 if (!subjectId) return;
-                
+
                 // Convert subjectId to string for consistent key handling
                 const subjectKey = String(subjectId);
-                
+
                 // If this subject is already running, do nothing
                 if (currentlyRunningSubjectId === subjectKey) {
                     return;
                 }
-                
+
                 setTimersBySubject(prev => {
                     const updated = { ...prev };
-                    
+
                     // Pause any currently running subject
                     if (currentlyRunningSubjectId && updated[currentlyRunningSubjectId]) {
                         const currentTimer = updated[currentlyRunningSubjectId];
@@ -715,28 +715,28 @@
                             };
                         }
                     }
-                    
+
                     // Start/resume the requested subject
                     updated[subjectKey] = {
                         elapsed: updated[subjectKey]?.elapsed || 0,
                         running: true,
                         startedAt: Date.now()
                     };
-                    
+
                     return updated;
                 });
-                
+
                 setCurrentlyRunningSubjectId(subjectKey);
             };
 
             const pauseTimer = (subjectId) => {
                 const subjectKey = String(subjectId || currentlyRunningSubjectId);
                 if (!subjectKey) return;
-                
+
                 setTimersBySubject(prev => {
                     const updated = { ...prev };
                     const timer = updated[subjectKey];
-                    
+
                     if (timer && timer.running && timer.startedAt) {
                         updated[subjectKey] = {
                             ...timer,
@@ -745,25 +745,25 @@
                             startedAt: null
                         };
                     }
-                    
+
                     return updated;
                 });
-                
+
                 setCurrentlyRunningSubjectId(null);
             };
 
             const stopTimer = async (subjectId) => {
                 const subjectKey = String(subjectId || currentlyRunningSubjectId);
                 if (!subjectKey || !user) return;
-                
+
                 const timer = timersBySubject[subjectKey];
                 if (!timer) return;
-                
+
                 // Calculate final duration
                 const finalDuration = timer.running && timer.startedAt 
                     ? timer.elapsed + Math.floor((Date.now() - timer.startedAt) / 1000)
                     : timer.elapsed;
-                
+
                 // Save session if there's actual time logged
                 if (finalDuration > 0) {
                     try {
@@ -791,14 +791,14 @@
                         console.error('Error saving session:', error);
                     }
                 }
-                
+
                 // Reset only this subject's timer
                 setTimersBySubject(prev => {
                     const updated = { ...prev };
                     delete updated[subjectKey];
                     return updated;
                 });
-                
+
                 if (currentlyRunningSubjectId === subjectKey) {
                     setCurrentlyRunningSubjectId(null);
                 }
@@ -938,12 +938,8 @@
                 const colorOptions = [
                     { value: '#FF6B6B', name: 'Red' },
                     { value: '#FF8E53', name: 'Orange' },
-                    { value: '#FF6B9D', name: 'Pink' },
-                    { value: '#C44569', name: 'Dark Pink' },
-                    { value: '#F8B500', name: 'Yellow' },
-                    { value: '#FFA726', name: 'Amber' },
+                    { value: '#FFD700', name: 'Yellow' },
                     { value: '#66BB6A', name: 'Green' },
-                    { value: '#26A69A', name: 'Teal' },
                     { value: '#42A5F5', name: 'Blue' },
                     { value: '#5C6BC0', name: 'Indigo' },
                     { value: '#AB47BC', name: 'Purple' },
@@ -1087,7 +1083,7 @@
                     if ((formData.hours > 0 || formData.minutes > 0) && formData.subjectName.trim()) {
                         // Check if subject already exists
                         let existingSubject = subjects.find(s => s.name.toLowerCase() === formData.subjectName.trim().toLowerCase());
-                        
+
                         if (!existingSubject) {
                             // Create new subject automatically
                             const newSubjectData = {
@@ -1096,7 +1092,7 @@
                                 goal: 60, // Default 1 hour goal
                                 description: `Auto-created for session on ${formData.date}`
                             };
-                            
+
                             try {
                                 const sessionToken = localStorage.getItem('sessionToken');
                                 const response = await fetch('/api/subjects', {
@@ -1222,7 +1218,7 @@
                     // If subject name is provided, find or create the subject
                     if (formData.subjectName.trim()) {
                         let existingSubject = subjects.find(s => s.name.toLowerCase() === formData.subjectName.trim().toLowerCase());
-                        
+
                         if (!existingSubject) {
                             // Create new subject automatically
                             const newSubjectData = {
@@ -1231,7 +1227,7 @@
                                 goal: 60, // Default 1 hour goal
                                 description: `Auto-created for video note: ${formData.title}`
                             };
-                            
+
                             try {
                                 const sessionToken = localStorage.getItem('sessionToken');
                                 const response = await fetch('/api/subjects', {
@@ -1406,7 +1402,7 @@
                                 ))}
                             </div>
                         </div>
-                        
+
                         {/* Global TimerBar - visible across all sections */}
                         {(currentlyRunningSubjectId || Object.keys(timersBySubject).length > 0) && (
                             <div className="bg-white rounded-xl shadow-sm p-4 mb-6 border-l-4 border-blue-600">
@@ -1431,8 +1427,8 @@
                                                 <div key={subjectId} className="flex items-center gap-2">
                                                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                                                     <div>
-                                                        <p className="text-xs text-gray-500">Paused</p>
-                                                        <p className="text-sm font-medium text-gray-700">
+                                                        <p className="text-xs text-white">Paused</p>
+                                                        <p className="text-sm font-medium text-white">
                                                             {subjects.find(s => String(s.id) === subjectId)?.name || 'Unknown Subject'} - {formatTime(timer.elapsed)}
                                                         </p>
                                                     </div>
@@ -1766,7 +1762,7 @@
                             </div>
                         )}
 
-                        
+
 
                         {currentView === 'analytics' && (
                             <div className="space-y-6">
